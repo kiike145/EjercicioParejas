@@ -1,0 +1,47 @@
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h2{
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+button {
+    border: 1px solid blue;
+    height: 60px;
+    width: 60px;
+}
+
+.tablero{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 30px;
+}
+
+.selector{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    font-size: 20px;
+    color: black;
+}
+
+div p {
+    margin: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+input[type="radio"]{
+    margin-bottom: 10px;
+}
