@@ -37,8 +37,34 @@ function devolverNumerosDeCuadrados(horizontal , vertical){
     return numeros;
 }
 
+function obtenerDificultad() { // Funcion para obtener la dificultad seleccioanda 
+    // Una vez obtenemos la dificultad, calculamos los numeros 
+    if (document.getElementById("facil").checked) {
+        // alert("facil");
+        numeros = devolverNumerosDeCuadrados(3 , 4);
+        numeros = numeros.sort(()=> {return Math.random() - 0.5});
+        alert(numeros);
+    }
+
+    if (document.getElementById("medio").checked) {
+        // alert("medio");
+        numeros = devolverNumerosDeCuadrados(4 , 5);
+        numeros = numeros.sort(()=> {return Math.random() - 0.5});
+        alert(numeros);
+    }
+
+    if (document.getElementById("dificil").checked) {
+        // alert("dificil");
+        numeros = devolverNumerosDeCuadrados(6 , 6);
+        numeros = numeros.sort(()=> {return Math.random() - 0.5});
+        alert(numeros);
+    }
+    
+}
+/*
 numeros = devolverNumerosDeCuadrados(3 , 4);
 numeros = numeros.sort(()=> {return Math.random() - 0.5});
+*/
 
 // let numerosDesordenados = numeros.sort(()=> {return Math.random() - 0.5});
 // console.log("Numero DESordenados:" + numeros);
@@ -82,8 +108,7 @@ function mostrarNum(idBoton) {
 
         } else {
             /* 
-            En caso de no sean iguales
-            reseteamos el contador de numeros mostrados a 0
+            En caso de no sean iguales reseteamos el contador de numeros mostrados a 0
             y mostramos que queda 1 pareja menos por buscar
             */
             setTimeout(()=>{
