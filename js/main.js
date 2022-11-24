@@ -21,7 +21,7 @@ function devolverNumerosDeCuadrados(horizontal , vertical){
     if((totalNums % 2) == 0){
         // Si el resultado es un numero par, calculamos el total de numeros a generar 
         // Por ejemplo, el tablero es de 3 X 4 => 12 casillas. Al ser numero par, lo dividimos entre 2 
-        // y obtenemos el numero maximo de los botones del tablero (6)
+        // y obtenemos el numero maximo de parejas (6)
         var num = totalNums/2;
 
         for (let i = 1; i <= num; i++) {
@@ -37,40 +37,54 @@ function devolverNumerosDeCuadrados(horizontal , vertical){
     return numeros;
 }
 
-function obtenerDificultad() { // Funcion para obtener la dificultad seleccioanda 
-    // Una vez obtenemos la dificultad, calculamos los numeros 
+numeros = devolverNumerosDeCuadrados(3 , 4);
+numeros = numeros.sort(()=> {return Math.random() - 0.5});
+
+function obtenerDificultad(event) { 
+    event.preventDefault();
+    // Funcion para obtener la dificultad seleccioanda 
+    // Una vez obtenemos la dificultad, calculamos los numeros
+    
+    numeros = []; // Se reinicia el valor de la lista de numeros para que no se arrastren numeros a mayores
+
     if (document.getElementById("facil").checked) {
-        // alert("facil");
+        // console.log("facil");
         numeros = devolverNumerosDeCuadrados(3 , 4);
         numeros = numeros.sort(()=> {return Math.random() - 0.5});
-        alert(numeros);
+
+        accParejas = (numeros.length/2); // 6
+        parejasRestantes.innerHTML = accParejas;
+
+        console.log(accParejas);
     }
 
     if (document.getElementById("medio").checked) {
-        // alert("medio");
+        //console.log("medio");
         numeros = devolverNumerosDeCuadrados(4 , 5);
         numeros = numeros.sort(()=> {return Math.random() - 0.5});
-        alert(numeros);
+
+        accParejas = (numeros.length/2); // 10
+        parejasRestantes.innerHTML = accParejas;
+        console.log(accParejas);
     }
 
     if (document.getElementById("dificil").checked) {
-        // alert("dificil");
-        numeros = devolverNumerosDeCuadrados(6 , 6);
+        //console.log("dificil");
+        numeros = devolverNumerosDeCuadrados(6 , 6); // 18
         numeros = numeros.sort(()=> {return Math.random() - 0.5});
-        alert(numeros);
+
+        accParejas = (numeros.length/2);
+        parejasRestantes.innerHTML = accParejas;
+        console.log(accParejas);
     }
-    
 }
-/*
-numeros = devolverNumerosDeCuadrados(3 , 4);
-numeros = numeros.sort(()=> {return Math.random() - 0.5});
-*/
 
 // let numerosDesordenados = numeros.sort(()=> {return Math.random() - 0.5});
 // console.log("Numero DESordenados:" + numeros);
 
 function mostrarNum(idBoton) {
-    numerosMostrados++;
+
+    numerosMostrados++; // Variable de control para saber cuantos botones se han pulsado
 
     if (numerosMostrados == 1) {
         // Recogermos el boton con el id que se le pasa como parametro
@@ -98,9 +112,7 @@ function mostrarNum(idBoton) {
 
         if (resultado1 == resultado2) {
             /* 
-            En caso de que lo numeros sean iguales
-            reseteamos el contador de numeros mostrados a 0
-            y mostramos que queda 1 pareja menos por buscar
+            En caso de que lo numeros sean iguales reseteamos el contador de numeros mostrados a 0 y mostramos que queda 1 pareja menos por buscar
             */
             numerosMostrados = 0;
             accParejas--;
@@ -108,8 +120,7 @@ function mostrarNum(idBoton) {
 
         } else {
             /* 
-            En caso de no sean iguales reseteamos el contador de numeros mostrados a 0
-            y mostramos que queda 1 pareja menos por buscar
+            En caso de no sean iguales reseteamos el contador de numeros mostrados a 0 y mostramos que queda 1 pareja menos por buscar
             */
             setTimeout(()=>{
                 boton1.innerHTML = " ";
@@ -117,7 +128,7 @@ function mostrarNum(idBoton) {
 
                 boton2.innerHTML = " ";
                 boton2.disabled = false;
-            } , 1000);
+            } , 750);
 
             numerosMostrados = 0;
         }

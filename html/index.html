@@ -49,15 +49,13 @@
 
     <section class="selector">
         <h2>Selector de dificultad:</h2>
-        <form action="index.html" method="post" id="formulario">
+        <form method="post" id="formulario">
             <input type="radio" name="dificultad" id="facil"> Facil <br>
             <input type="radio" name="dificultad" id="medio"> Medio <br>
             <input type="radio" name="dificultad" id="dificil"> Dificil <br>
             <input type="radio" name="dificultad" id="custom"> Custom <br>
 
-
-            <input type="submit" value="Seleccionar dificultad" onclick="obtenerDificultad()">
-
+            <input type="submit" value="Seleccionar dificultad" onclick="obtenerDificultad(event)">
         </form>
     </section>
 
