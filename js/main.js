@@ -70,7 +70,7 @@ function obtenerDificultad(event) {
 
     if (document.getElementById("medio").checked) {
 
-        genera_tabla(5 , 4);
+        genera_tabla(4 , 5);
         numeros = devolverNumerosDeCuadrados(4 , 5);
         numeros = numeros.sort(()=> {return Math.random() - 0.5});
 
@@ -106,11 +106,10 @@ function obtenerDificultad(event) {
             parejasRestantes.innerHTML = accParejas;
 
         } else {
-            alert("Numero no validos");
+            alert("Numero no validos\nFilas X columnas tiene que dar par");
         }
     }
 }
-
 
 function mostrarNum(idBoton) {
 
