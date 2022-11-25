@@ -21,24 +21,24 @@
         </div>
     </section>
 
-    <section class="tablero">
+    <section id="tablero">
         <h1>Buscar Parejas - Enrique Vilas Serin</h1>
-        <table>
-            <tr>
+        <table id="tabla">
+            <tr class="fila">
                 <td><button id="0" onClick="mostrarNum(0)"></button></td>
                 <td><button id="1" onClick="mostrarNum(1)"></button></td>
                 <td><button id="2" onClick="mostrarNum(2)"></button></td>
                 <td><button id="3" onClick="mostrarNum(3)"></button></td>
             </tr>
 
-            <tr>
+            <tr class="fila">
                 <td><button id="4" onClick="mostrarNum(4)"></button></td>
                 <td><button id="5" onClick="mostrarNum(5)"></button></td>
                 <td><button id="6" onClick="mostrarNum(6)"></button></td>
                 <td><button id="7" onClick="mostrarNum(7)"></button></td>
             </tr>
 
-            <tr>
+            <tr class="fila">
                 <td><button id="8" onClick="mostrarNum(8)"></button></td>
                 <td><button id="9" onClick="mostrarNum(9)"></button></td>
                 <td><button id="10" onClick="mostrarNum(10)"></button></td>
@@ -54,7 +54,11 @@
             <input type="radio" name="dificultad" id="medio"> Medio <br>
             <input type="radio" name="dificultad" id="dificil"> Dificil <br>
             <input type="radio" name="dificultad" id="custom"> Custom <br>
+            <label>Filas: </label> 
+            <input type="number" name="filas" id="filas">
 
+            <label>Columnas: </label> 
+            <input type="number" name="columnas" id="columnas"> <br>
             <input type="submit" value="Seleccionar dificultad" onclick="obtenerDificultad(event)">
         </form>
     </section>
