@@ -11,6 +11,8 @@ let accParejas = 6;
 let contadorMovs = document.getElementById("contadorMovs");
 let parejasRestantes = document.getElementById("parejasRestantes");
 let tabla = document.getElementById("tabla");
+let filas = document.getElementById("filas");
+let columnas = document.getElementById("columnas");
 
 // Generacion de numero
 let numeros = [];
@@ -52,13 +54,20 @@ function obtenerDificultad(event) {
         tabla.removeChild(tabla.firstChild);
     }
     // Cada vez que seleccionamos un nivel nuevo, reiniciamos el contador de movimientos
-    contadorMovs.innerHTML = 0; 
+    //contadorMovs.value = 0; 
 
     // Se reinicia el valor de la lista de numeros para evitar posibles errores
     numeros = []; 
     
     // Comprobamos que dificulad se selecciono y generamos el tablero y numeros
     if (document.getElementById("facil").checked) {
+
+        // En caso de que se pulse cualquier opcion diferente a "Custom", se borrara el contenido de los cuadros de texto
+        filas.value = "";
+        columnas.value = "";
+
+        accMovs = 0;
+        contadorMovs.innerHTML = 0;
 
         genera_tabla(3 , 4);
         numeros = devolverNumerosDeCuadrados(3 , 4);
@@ -70,6 +79,12 @@ function obtenerDificultad(event) {
 
     if (document.getElementById("medio").checked) {
 
+        filas.value = "";
+        columnas.value = "";
+
+        accMovs = 0;
+        contadorMovs.innerHTML = 0;
+
         genera_tabla(4 , 5);
         numeros = devolverNumerosDeCuadrados(4 , 5);
         numeros = numeros.sort(()=> {return Math.random() - 0.5});
@@ -79,7 +94,13 @@ function obtenerDificultad(event) {
     }
 
     if (document.getElementById("dificil").checked) {
-        //console.log("dificil");
+
+        filas.value = "";
+        columnas.value = "";
+
+        accMovs = 0;
+        contadorMovs.innerHTML = 0;
+
         genera_tabla(6 , 6);
         numeros = devolverNumerosDeCuadrados(6 , 6); // 18
         numeros = numeros.sort(()=> {return Math.random() - 0.5});
@@ -94,19 +115,26 @@ function obtenerDificultad(event) {
         let filas = document.getElementById("filas").value;
         let columnas = document.getElementById("columnas").value;
 
+        accMovs = 0;
+        contadorMovs.innerHTML = 0;
 
-        // Comprobamos que la multiplicacion de un numero para para calcular las parejas
-        if ((filas * columnas) % 2 == 0) {
-            // Generamos la tabla y la lista de numeros en funcion de los datos introducidos
-            genera_tabla(filas , columnas);
-            numeros = devolverNumerosDeCuadrados(filas , columnas); 
-            numeros = numeros.sort(()=> {return Math.random() - 0.5});
-    
-            accParejas = (numeros.length/2);
-            parejasRestantes.innerHTML = accParejas;
+        if (filas > 0 && columnas > 0) {
+            // Comprobamos que la multiplicacion de un numero para para calcular las parejas
+            if ((filas * columnas) % 2 == 0) {
+                // Generamos la tabla y la lista de numeros en funcion de los datos introducidos
+                genera_tabla(filas , columnas);
+                numeros = devolverNumerosDeCuadrados(filas , columnas); 
+                numeros = numeros.sort(()=> {return Math.random() - 0.5});
 
+                accParejas = (numeros.length/2);
+                parejasRestantes.innerHTML = accParejas;
+
+            } else {
+                alert("Numero no validos\nFilas X columnas tiene que dar par");
+                // En caso de que se pulse cualquier opcion diferente a "Custom" o que los numeros no sean validos, se borrara el contenido de los cuadros de texto
+            }
         } else {
-            alert("Numero no validos\nFilas X columnas tiene que dar par");
+            alert("Numero no validos\nTienen que ser numeros positivos");
         }
     }
 }
