@@ -21,33 +21,27 @@ function devolverNumerosDeCuadrados(filas , columnas){
 
     let totalNums = filas * columnas;
     // Comrpobamos si el total de casillas es par para poder generar los numeros
-    if((totalNums % 2) == 0){
-        // Si el resultado es un numero par, calculamos el total de numeros a generar 
-        // Por ejemplo, el tablero es de 3 X 4 => 12 casillas. Al ser numero par, lo dividimos entre 2 
-        // y obtenemos el numero maximo de parejas (6)
-        let num = totalNums/2;
-
-        for (let i = 1; i <= num; i++) {
-            numeros.push(i);
-            numeros.push(i);
-            // console.log(numeros);
-        }
-    } else {
-        // En caso de que no lo sea, mostramos un mensaje de aviso para que lo corrija
+    // Si el resultado es un numero par, calculamos el total de numeros a generar 
+    // Por ejemplo, el tablero es de 3 X 4 => 12 casillas. Al ser numero par, lo dividimos entre 2 
+    // y obtenemos el numero maximo de parejas (6)
+    let num = totalNums/2;
+    for (let i = 1; i <= num; i++) {
+        numeros.push(i);
+        numeros.push(i);
+        // console.log(numeros);
     }
 
-    // console.log("Numero ordenados:" + numeros);
+    numeros = numeros.sort(()=> {return Math.random() - 0.5});
     return numeros;
 }
-
 numeros = devolverNumerosDeCuadrados(4 , 3);
-numeros = numeros.sort(()=> {return Math.random() - 0.5});
 
+
+// Funcion para obtener la dificultad seleccioanda 
+// Una vez obtenemos la dificultad, calculamos los numeros
 function obtenerDificultad(event) { 
 
     event.preventDefault();
-    // Funcion para obtener la dificultad seleccioanda 
-    // Una vez obtenemos la dificultad, calculamos los numeros
     
     // Al pulsar el boton para seleccionar la dificultar , se elimina el tablero por defecto para generar uno nuevo segun los datos seleccionados
     while (tabla.firstChild) { 
@@ -58,6 +52,10 @@ function obtenerDificultad(event) {
 
     // Se reinicia el valor de la lista de numeros para evitar posibles errores
     numeros = []; 
+
+    // Cada vez que se recarga el tablero, el contador de movimientos se reinicia a 0
+    accMovs = 0;
+    contadorMovs.innerHTML = 0;
     
     // Comprobamos que dificulad se selecciono y generamos el tablero y numeros
     if (document.getElementById("facil").checked) {
@@ -66,12 +64,8 @@ function obtenerDificultad(event) {
         filas.value = "";
         columnas.value = "";
 
-        accMovs = 0;
-        contadorMovs.innerHTML = 0;
-
         genera_tabla(3 , 4);
         numeros = devolverNumerosDeCuadrados(3 , 4);
-        numeros = numeros.sort(()=> {return Math.random() - 0.5});
 
         accParejas = (numeros.length/2); // 6
         parejasRestantes.innerHTML = accParejas;
@@ -82,12 +76,8 @@ function obtenerDificultad(event) {
         filas.value = "";
         columnas.value = "";
 
-        accMovs = 0;
-        contadorMovs.innerHTML = 0;
-
         genera_tabla(4 , 5);
         numeros = devolverNumerosDeCuadrados(4 , 5);
-        numeros = numeros.sort(()=> {return Math.random() - 0.5});
 
         accParejas = (numeros.length/2); // 10
         parejasRestantes.innerHTML = accParejas;
@@ -98,14 +88,10 @@ function obtenerDificultad(event) {
         filas.value = "";
         columnas.value = "";
 
-        accMovs = 0;
-        contadorMovs.innerHTML = 0;
-
         genera_tabla(6 , 6);
-        numeros = devolverNumerosDeCuadrados(6 , 6); // 18
-        numeros = numeros.sort(()=> {return Math.random() - 0.5});
+        numeros = devolverNumerosDeCuadrados(6 , 6); 
 
-        accParejas = (numeros.length/2);
+        accParejas = (numeros.length/2); // 18
         parejasRestantes.innerHTML = accParejas;
     }
 
@@ -115,10 +101,7 @@ function obtenerDificultad(event) {
         let filas = document.getElementById("filas").value;
         let columnas = document.getElementById("columnas").value;
 
-        accMovs = 0;
-        contadorMovs.innerHTML = 0;
-
-        if (filas > 0 && columnas > 0) {
+        if (filas > 1 && columnas > 1) {
             // Comprobamos que la multiplicacion de un numero para para calcular las parejas
             if ((filas * columnas) % 2 == 0) {
                 // Generamos la tabla y la lista de numeros en funcion de los datos introducidos
@@ -134,7 +117,7 @@ function obtenerDificultad(event) {
                 // En caso de que se pulse cualquier opcion diferente a "Custom" o que los numeros no sean validos, se borrara el contenido de los cuadros de texto
             }
         } else {
-            alert("Numero no validos\nTienen que ser numeros positivos");
+            alert("Numero no validos\nEl tamaño minimo es 2x2");
         }
     }
 }
