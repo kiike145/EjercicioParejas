@@ -31,11 +31,15 @@ function devolverNumerosDeCuadrados(filas , columnas){
         // console.log(numeros);
     }
 
-    numeros = numeros.sort(()=> {return Math.random() - 0.5});
+    // Bucle para desordenar el array de numeros varias veces
+    // Al probar el funcionamiento del programa, los valores no estaban del todo desordenador, era muy comun que los numeros que formaban las parejas estuvieran uno a continuacion del otro.
+    for (let index = 0; index < 5; index++) {
+        numeros = numeros.sort(()=> {return Math.random() - 0.5});
+    }
     return numeros;
 }
-numeros = devolverNumerosDeCuadrados(4 , 3);
 
+numeros = devolverNumerosDeCuadrados(4 , 3);
 
 // Funcion para obtener la dificultad seleccioanda 
 // Una vez obtenemos la dificultad, calculamos los numeros
