@@ -107,7 +107,6 @@ function obtenerDificultad(event) {
                 // Generamos la tabla y la lista de numeros en funcion de los datos introducidos
                 genera_tabla(filas , columnas);
                 numeros = devolverNumerosDeCuadrados(filas , columnas); 
-                numeros = numeros.sort(()=> {return Math.random() - 0.5});
 
                 accParejas = (numeros.length/2);
                 parejasRestantes.innerHTML = accParejas;
